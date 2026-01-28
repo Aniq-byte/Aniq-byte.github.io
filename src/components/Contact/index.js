@@ -4,6 +4,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import AnimatedLetters from '../AnimatedLetters'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faLinkedin,
+  faGithub,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons'
+import { SiGooglescholar } from 'react-icons/si'
 import './index.scss'
 
 const Contact = () => {
@@ -49,6 +56,40 @@ const Contact = () => {
             If you have any other requests or
             questions, please do not hesitate to contact me using the form from below.
           </p>
+          <div className="social-links">
+            <a
+              href="https://www.linkedin.com/in/aniq-elahi"
+              target="_blank"
+              rel="noreferrer"
+              title="LinkedIn"
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
+            <a
+              href="https://github.com/Aniq-byte"
+              target="_blank"
+              rel="noreferrer"
+              title="GitHub"
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+            <a
+              href="https://scholar.google.ca/citations?user=NJa6llQAAAAJ&hl=en"
+              target="_blank"
+              rel="noreferrer"
+              title="Google Scholar"
+            >
+              <SiGooglescholar size={24} />
+            </a>
+            <a
+              href="https://x.com/AniqElahi33686"
+              target="_blank"
+              rel="noreferrer"
+              title="Twitter/X"
+            >
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+          </div>
           <div className="contact-form">
             <form ref={form} onSubmit={sendEmail}>
               <ul>

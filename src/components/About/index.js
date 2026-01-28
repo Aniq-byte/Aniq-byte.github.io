@@ -6,12 +6,13 @@ import {
   faHtml5,
   faJsSquare,
   faReact, 
+  faPython,
+  faJava,
 } from '@fortawesome/free-brands-svg-icons'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.scss'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
 
 const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -35,13 +36,13 @@ const About = () => {
             />
           </h1>
           <p>
-            Recent graduate with a Bachelor degree in Computer Science and a focus on Machine Learning with hands-on experience of contributing to projects in Machine Learning and Data Science.
+          Master of Computer Science student with 3+ years of industry experience and active research in Agentic AI and Multi-Agent Systems.
           </p>
           <p align="LEFT">
-            Expertise in Data Science, Natural Language Processing and Reinforcement Learning with interest in developing cutting-edge AI solutions to drive business growth, identify opportunities and advance research innovations.
+          Research interests include LLM-based agents, reinforcement learning, model safety, and scalable ML systems, with experience contributing to peer-reviewed publications and applied research in healthcare.
           </p>
           <p>
-            Proficient in Data Analytics, programming languages, and software utilization. 
+          Strong background in data analytics, software engineering, and end-to-end ML pipelines.
           </p>
         </div>
 
@@ -51,7 +52,7 @@ const About = () => {
               <FontAwesomeIcon icon={faPython} color="#ffd343" />
             </div>
             <div className="face2">
-              <FontAwesomeIcon icon={faHtml5} color="#F06529" />
+              <FontAwesomeIcon icon={faJava} color="#F06529" />
             </div>
             <div className="face3">
               <FontAwesomeIcon icon={faAws} color="#1B243D" />

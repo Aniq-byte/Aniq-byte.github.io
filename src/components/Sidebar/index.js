@@ -6,6 +6,7 @@ import {
   faLinkedin,
   faGithub,
   faYoutube,
+  faTwitter,
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faHome,
@@ -14,7 +15,9 @@ import {
   faSuitcase,
   faBars,
   faClose,
+  faBook,
 } from '@fortawesome/free-solid-svg-icons'
+import { SiGooglescholar } from 'react-icons/si'
 import { Link, NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
@@ -24,7 +27,7 @@ const Sidebar = () => {
     <div className="nav-bar">
       <Link 
         className="logo"
-        to="/portfolio"
+        to="/"
         onClick={() => setShowNav(false)}>
         <img src={LogoS} alt="Logo" />
         
@@ -33,16 +36,16 @@ const Sidebar = () => {
         <NavLink 
           exact="true"
           activeclassname="active"
-          to="/portfolio"
+          to="/"
           onClick={() => setShowNav(false)}>
-          <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
+          <FontAwesomeIcon icon={faHome} color="#bf1e1a" />
         </NavLink>
         <NavLink 
           activeclassname="active"
           className="about-link"
           to="about"
           onClick={() => setShowNav(false)}>
-          <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
+          <FontAwesomeIcon icon={faUser} color="#bf1e1a" />
         </NavLink>
         <NavLink
           activeclassname="active"
@@ -50,7 +53,7 @@ const Sidebar = () => {
           to="projects"
           onClick={() => setShowNav(false)}
         >
-          <FontAwesomeIcon icon={faSuitcase} color="#4d4d4e" />
+          <FontAwesomeIcon icon={faSuitcase} color="#bf1e1a" />
         </NavLink>
         <NavLink
           activeclassname="active"
@@ -58,15 +61,7 @@ const Sidebar = () => {
           to="contact"
           onClick={() => setShowNav(false)}
         >
-          <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
-        </NavLink>
-        <NavLink
-          activeclassname="active"
-          className="contact-link"
-          to="dashboard"
-          onClick={() => setShowNav(false)}
-        >
-          <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
+          <FontAwesomeIcon icon={faEnvelope} color="#bf1e1a" />
         </NavLink>
         <FontAwesomeIcon 
           onClick={() => setShowNav(false)}
@@ -84,7 +79,7 @@ const Sidebar = () => {
           >
             <FontAwesomeIcon
               icon={faLinkedin}
-              color="#4d4d4e"
+              color="#bf1e1a"
               className="anchor-icon"
             />
           </a>
@@ -97,7 +92,29 @@ const Sidebar = () => {
           >
             <FontAwesomeIcon
               icon={faGithub}
-              color="#4d4d4e"
+              color="#bf1e1a"
+              className="anchor-icon"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://scholar.google.ca/citations?user=NJa6llQAAAAJ&hl=en"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <SiGooglescholar size={20} color="#bf1e1a" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://x.com/AniqElahi33686"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={faTwitter}
+              color="#bf1e1a"
               className="anchor-icon"
             />
           </a>

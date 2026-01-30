@@ -28,13 +28,13 @@
       }
   
       &:after {
-        content: '<h1/>';
+        content: '</h1>';
         font-family: 'La Belle Aurore', cursive;
         color: #bf1e1a;
         font-size: 18px;
         position: absolute;
-        margin-top: 18px;
-        margin-left: 20px;
+        margin-top: 48px;
+        margin-left: -190px;
         animation: fadeIn 1s 1.7s backwards;
         opacity: 0.6;
       }
@@ -51,7 +51,7 @@
   
     h2 {
       color: #8d8d8d;
-      margin-top: 20px;
+      margin-top: 40px;
       font-weight: 400;
       font-size: 11px;
       font-family: sans-serif;

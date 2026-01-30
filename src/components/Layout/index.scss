@@ -65,15 +65,14 @@
       }
 
       &:after {
-        content: '<h1/>';
+        content: '</h1>';
         font-family: 'La Belle Aurore', cursive;
         color: #bf1e1a;
         font-size: 18px;
         line-height: 18px;
         position: absolute;
-        left: -30px;
+        left: -10px;
         bottom: -20px;
-        margin-left: 20px;
         opacity: 0.6;
       }
     }

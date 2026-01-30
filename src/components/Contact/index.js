@@ -52,10 +52,6 @@ const Contact = () => {
               idx={15}
             />
           </h1>
-          <p>
-            If you have any other requests or
-            questions, please do not hesitate to contact me using the form from below.
-          </p>
           <div className="social-links">
             <a
               href="https://www.linkedin.com/in/aniq-elahi"
@@ -90,6 +86,10 @@ const Contact = () => {
               <FontAwesomeIcon icon={faTwitter} />
             </a>
           </div>
+          <p>
+            If you have any other requests or
+            questions, please do not hesitate to contact me using the form from below.
+          </p>
           <div className="contact-form">
             <form ref={form} onSubmit={sendEmail}>
               <ul>

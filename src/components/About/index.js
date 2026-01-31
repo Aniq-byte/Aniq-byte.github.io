@@ -39,10 +39,13 @@ const About = () => {
           Master of Computer Science student with 3+ years of industry experience and active research in Agentic AI and Multi-Agent Systems.
           </p>
           <p align="LEFT">
-          Research interests include LLM-based agents, reinforcement learning, model safety, and scalable ML systems, with experience contributing to peer-reviewed publications and applied research in healthcare.
+          Research interests include LLM-based agents, deep reinforcement learning, and model safety, with experience contributing to peer-reviewed publications and applied research in healthcare.
           </p>
           <p>
-          Strong background in data analytics, software engineering, and end-to-end ML pipelines.
+          Strong data analytics skills paired with hands-on experience building data pipelines and deploying and scaling ML systems, gives me familiarity with all stages of the research and engineering lifecycle.
+          </p>
+          <p>
+          Outside of work, I enjoy surfing, skiing, cooking, and staying active. Fun Fact: I'm currently part of five intramural sports teams (soccer, volleyball, dodgeball, water polo, and basketball).
           </p>
         </div>
 

@@ -54,34 +54,38 @@
       }
 
       &:hover {
-        background-color: rgba(191, 30, 26, 0.12);
-        border-radius: 4px;
-
         svg {
           opacity: 0;
         }
 
         &:after {
           opacity: 1;
-          transform: translateY(-4px);
+          transform: translate(-50%, -50%);
         }
       }
 
       &:after {
-        /* position label centered under the icon (moved up slightly) */
+        /* Square box with centered text, positioned above icon */
         content: '';
         font-size: 9px;
         letter-spacing: 2px;
         position: absolute;
-        top: 42%;
-        left: 0;
-        transform: translateY(-50%);
-        display: block;
-        width: 100%;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: rgba(191, 30, 26, 0.12);
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
         opacity: 0;
+        pointer-events: none;
         -webkit-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out;
+        padding: 4px;
+        box-sizing: border-box;
       }
 
       &:first-child {
@@ -105,27 +109,22 @@
 
     a.portfolio-link {
       &:after {
-        /* Render the long label inside the sidebar and center vertically under the icon */
-        content: 'PUBLICATIONS\A&\APROJECTS';
+        /* Short label for the square box */
+        content: 'PUB &\APROJ';
         white-space: pre-line;
-        width: 100%;
-        left: 0;
-        top: 42%;
-        bottom: auto;
-        transform: translateY(-50%);
-        text-align: center;
-        font-size: 10px; /* smaller font */
-        padding-top: 4px;
         line-height: 1.1;
+        font-size: 10px;
         color: #bf1e1a;
-        opacity: 0;
       }
 
-      /* ensure the label appears only on hover (not when page active) */
+      /* ensure the label appears only on hover */
       &:hover:after {
         opacity: 1;
-        transform: translateY(-58%); /* subtle upward lift */
       }
+    }
+
+    a:not(:first-child):not(.about-link):not(.contact-link):not(.portfolio-link):after {
+      display: none;
     }
 
     a.active {

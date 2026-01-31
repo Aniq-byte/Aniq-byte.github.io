@@ -12,9 +12,15 @@ const Home = () => {
         e.preventDefault();
         const name = form.current[0]?.value;
         const description = form.current[1]?.value;
-        const srcCodeUrl = form.current[2]?.value;
-        const LiveDemoUrl = form.current[3]?.value;
-        const image = form.current[4]?.files[0];
+        const tagsRaw = form.current[2]?.value || '';
+        const srcCodeUrl = form.current[3]?.value;
+        const LiveDemoUrl = form.current[4]?.value;
+        const reportUrl = form.current[5]?.value;
+        const image = form.current[6]?.files[0];
+        const tags = tagsRaw
+            .split(',')
+            .map((tag) => tag.trim())
+            .filter(Boolean);
 
         const storageRef = ref(storage, `portfolio/${image.name}`);
 
@@ -24,8 +30,10 @@ const Home = () => {
                     savePortfolio({
                         name,
                         description,
+                        tags,
                         srcCodeUrl,
                         LiveDemoUrl,
+                        reportUrl,
                         image: downloadUrl
                     })
                 }, (error) => {
@@ -33,8 +41,10 @@ const Home = () => {
                     savePortfolio({
                         name,
                         description,
+                        tags,
                         srcCodeUrl,
                         LiveDemoUrl,
+                        reportUrl,
                         image: null
                     })
                 })
@@ -43,8 +53,10 @@ const Home = () => {
                 savePortfolio({
                     name,
                     description,
+                    tags,
                     srcCodeUrl,
                     LiveDemoUrl,
+                    reportUrl,
                     image: null
                 })
             }
@@ -67,8 +79,10 @@ const Home = () => {
             <form ref={form} onSubmit={submitPortfolio}>
                 <p><input type="text" placeholder="Name" /></p>
                 <p><textarea placeholder="Description" /></p>
+                <p><input type="text" placeholder="Tags (comma-separated)" /></p>
                 <p><input type="text" placeholder="srcCodeUrl" /></p>
                 <p><input type="text" placeholder="LiveDemoUrl" /></p>
+                <p><input type="text" placeholder="reportUrl" /></p>
                 <p><input type="file" placeholder="Image" /></p>
                 <button type="submit">Submit</button>
                 <button onClick={() => auth.signOut()}>Sign out</button>

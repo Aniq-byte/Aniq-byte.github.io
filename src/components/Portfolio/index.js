@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import Loader from "react-loaders";
 import AnimatedLetters from "../AnimatedLetters";
 import "./index.scss";
-import { getDocs, collection } from 'firebase/firestore/lite';
+import { getDocs, collection, query, orderBy } from 'firebase/firestore/lite';
 import { db } from '../../firebase';
+import { useLocation } from 'react-router-dom';
 
 const Portfolio = () => { 
     const [letterClass, setLetterClass] = useState('text-animate');
     const [portfolio, setPortfolio] = useState([]);
+    const location = useLocation();
+    const highlightParam = new URLSearchParams(location.search).get('highlight') || '';
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,29 +23,82 @@ const Portfolio = () => {
         getPortfolio();
     }, []);
 
+    useEffect(() => {
+        if (!highlightParam || portfolio.length === 0) return;
+        const target = document.querySelector('.image-box.highlight-bounce');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, [highlightParam, portfolio]);
+
     const getPortfolio = async () => {
-        const querySnapshot = await getDocs(collection(db, 'portfolio'));
+        const q = query(collection(db, 'portfolio'), orderBy('order', 'asc'));
+        const querySnapshot = await getDocs(q);
         setPortfolio(querySnapshot.docs.map((doc) => doc.data()));
     }
 
     const renderPortfolio = (portfolio) => {
+        const highlightLower = highlightParam.trim().toLowerCase();
         return (
             <div className="images-container">
                 {
                     portfolio.map((port, idx) => {
+                        const nameLower = (port.name || '').toLowerCase();
+                        const isHighlighted = Boolean(highlightLower) && (
+                            nameLower === highlightLower ||
+                            nameLower.includes(highlightLower)
+                        );
                         return (
-                            <div className="image-box" key={idx}>
+                            <div
+                                className={`image-box${isHighlighted ? ' highlight-bounce' : ''}`}
+                                key={idx}
+                            >
                                 <img 
                                 src={port.image}
                                 className="portfolio-image"
                                 alt="portfolio" />
+                                {Array.isArray(port.tags) && port.tags.length > 0 && (
+                                  <div className="project-tags">
+                                    {port.tags.map((tag, tagIdx) => (
+                                      <span className="project-tag" key={tagIdx}>{tag}</span>
+                                    ))}
+                                  </div>
+                                )}
                                 <div className="content">
                                     <p className="title">{port.name}</p>
                                     <h4 className="description">{port.description}</h4>
-                                    <button
+                                    {port.srcCodeUrl && (
+                                      <button
                                         className="btn"
                                         onClick={() => window.open(port.srcCodeUrl)}
-                                    >See Project</button>
+                                      >
+                                        See Github
+                                      </button>
+                                    )}
+                                    {port.LiveDemoUrl && (
+                                      <button
+                                        className="btn"
+                                        onClick={() => window.open(port.LiveDemoUrl)}
+                                      >
+                                        See Presentation
+                                      </button>
+                                    )}
+                                    {port.reportUrl && (
+                                      <button
+                                        className="btn"
+                                        onClick={() => window.open(port.reportUrl)}
+                                      >
+                                        See Technical Report
+                                      </button>
+                                    )}
+                                    {port.newsurl && (
+                                      <button
+                                        className="btn"
+                                        onClick={() => window.open(port.newsurl)}
+                                      >
+                                        Featured in The Guardian
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         )
@@ -63,46 +119,67 @@ const Portfolio = () => {
                         idx={15}
                     />
                 </h1>
+                <br />
                 <div className="publications">
                   <h3>Publications</h3>
                   <p>
-                    <strong>Undistillable Open Language Models with Teacher Scrambling</strong>
+                    <strong className="pub-title">Undistillable Open Language Models with Teacher Scrambling</strong>
                     <br />
-                    Sebastian Dionicio, Aniq Elahi, Domenic Rosati, Hassan Sajjad
+                    Sebastian Dionicio, <span className="pub-author">Aniq Elahi</span>, Domenic Rosati, Hassan Sajjad
                     <br />
-                    LoCk-LLM Workshop @ NeurIPS 2025
+                    <span className="pub-venue">Thirty-Ninth Annual Conference on Neural Information Processing Systems. LoCk-LLM Workshop @ <span className="pub-venue-bold">NeurIPS 2025</span></span>
                     <br />
-                    <a href="#" onClick={() => window.open('#')}>[Paper]</a>
+                    [
+                    <a className="pub-link" href="https://openreview.net/forum?id=g9vFg3O8YY" target="_blank">Paper</a>
+                    ]
                   </p>
                 </div>
 
+                <br />
+
                 <div className="research">
                   <h3>Ongoing Research</h3>
+                  <p className="description"> Graduate Researcher with the Dalhousie Applied Machine Learning Research (<a className="pub-link" href="https://web.cs.dal.ca/~gaw/" target="_blank">DAMLR</a>), focused on agentic and multi-agent systems under the supervision of Ga Wu, with ongoing work targeted toward peer-reviewed publications alongside academic and industry collaborators.</p>
                   <div className="research-cards">
                     <div className="research-card">
-                      <p className="title">Inter-Agent Collusion in LLM-Based Multi-Agent Systems</p>
-                      <p className="description">Studying coordination failures and collusion dynamics using multi-step reasoning and agent memory.</p>
+                        <p className="title">Point of Failure Detection in Multi-Agent Systems via Cascaded Conformal Prediction</p>
+                        <p className="description">
+                          Better identifying root failure points in multi-agent system trajectories with statistical methods and extending existing benchmarks with
+                          synthetically generated long-horizon datasets; work submitted to ICML (under review).
+                        </p>
                     </div>
+
                     <div className="research-card">
-                      <p className="title">Dynamic Questionnaires for Relapse Prediction</p>
-                      <p className="description">Extending adaptive assessment frameworks with knowledge graphs and multimodal time-series data.</p>
+                        <p className="title">Adaptive Questionnaires for Psychological Assessment</p>
+                        <p className="description">
+                          Developing conversational agent-driven assessment systems that adaptively probe symptoms and comorbidities,
+                          with a 200-participant clinical study currently underway.
+                        </p>
                     </div>
+
+                    <div className="research-card">
+                        <p className="title">Inter-Agent Alignment and Collusion in LLM-Based Systems</p>
+                        <p className="description">
+                          Studying emergent coordination, collusion, and failure modes in LLM-based multi-agent systems
+                          using deep reinforcement learning, MARL, and multi-step reasoning.
+                        </p>
+                    </div>
+
+                    <div className="research-card">
+                        <p className="title">Multimodal Relapse Prediction for Major Depressive Disorder</p>
+                        <p className="description">
+                          Exploring relapse prediction using multimodal time-series signals and structured knowledge to
+                          model uncertainty and longitudinal patient trajectories.
+                        </p>
+                      </div>
                   </div>
                 </div>
+
+                <br />
 
                 <div className="projects-list">
                   <h3>Projects</h3>
                   {renderPortfolio(portfolio)}
-                  <div className="static-projects">
-                    <div className="static-card">
-                      <p className="title">Election Prediction Polymarket</p>
-                      <p className="description">Probabilistic forecasting and market-based aggregation for election outcomes.</p>
-                    </div>
-                    <div className="static-card">
-                      <p className="title">Firelink</p>
-                      <p className="description">A platform for real-time wildfire risk analysis and information linking across sources.</p>
-                    </div>
-                  </div>
                 </div>
             </div>
             <Loader type="pacman" />

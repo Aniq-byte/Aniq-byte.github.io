@@ -139,13 +139,13 @@ const Portfolio = () => {
 
                 <div className="research">
                   <h3>Ongoing Research</h3>
-                  <p className="description"> Graduate Researcher with the Dalhousie Applied Machine Learning Research (<a className="pub-link" href="https://web.cs.dal.ca/~gaw/" target="_blank">DAMLR</a>), focused on agentic and multi-agent systems under the supervision of Ga Wu, with ongoing work targeted toward peer-reviewed publications alongside academic and industry collaborators.</p>
+                  <p className="description"> Graduate Researcher with the Dalhousie Applied Machine Learning Research (<a className="pub-link" href="https://web.cs.dal.ca/~gaw/" target="_blank">DAMLR</a>), focused on agentic and multi-agent systems under the supervision of Ga Wu, with ongoing work targeted toward peer-reviewed publications alongside academic and industry collaborators. Note: Project titles and descriptions below have been generalized, and certain technical details have been omitted or anonymized due to ongoing review and collaboration constraints.</p>
                   <div className="research-cards">
                     <div className="research-card">
                         <p className="title">Point of Failure Detection in Multi-Agent Systems via Cascaded Conformal Prediction</p>
                         <p className="description">
                           Better identifying root failure points in multi-agent system trajectories with statistical methods and extending existing benchmarks with
-                          synthetically generated long-horizon datasets; work submitted to ICML (under review).
+                          synthetically generated long-horizon datasets.
                         </p>
                     </div>
 
